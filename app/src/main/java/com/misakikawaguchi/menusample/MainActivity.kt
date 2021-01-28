@@ -1,7 +1,10 @@
 package com.misakikawaguchi.menusample
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.SimpleAdapter
 
@@ -21,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val lvMenu = findViewById<ListView>(R.id.lvMenu)
         val adapter = SimpleAdapter(applicationContext, _menuList, R.layout.row, FROM, TO)
         lvMenu.adapter = adapter
+
     }
 
     // 定食メニューを生成
@@ -74,4 +78,5 @@ class MainActivity : AppCompatActivity() {
 
         return menuList
     }
+
 }
