@@ -18,5 +18,9 @@ class MenuThanksActivity : AppCompatActivity() {
         tvMenuName.text = menuName
         tvMenuPrice.text = menuPrice
 
+        // 戻るメニューを表示
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
+
+
 }
