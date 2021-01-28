@@ -3,6 +3,7 @@ package com.misakikawaguchi.menusample
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -104,6 +105,14 @@ class MainActivity : AppCompatActivity() {
         lvMenu.adapter = adapter
 
         return super.onOptionsItemSelected(item)
+    }
+
+    // コンテキストメニューを表示する
+    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+
+        menuInflater.inflate(R.menu.menu_context_menu_list, menu)
+        menu.setHeaderTitle(R.string.menu_list_context_header)
     }
 
 }
