@@ -9,5 +9,14 @@ class MenuThanksActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_thanks)
 
+        val menuName = intent.getStringExtra("menuName")
+        val menuPrice = intent.getStringExtra("menuPrice")
+
+        val tvMenuName = findViewById<TextView>(R.id.tvMenuName)
+        val tvMenuPrice = findViewById<TextView>(R.id.tvMenuPrice)
+
+        tvMenuName.text = menuName
+        tvMenuPrice.text = menuPrice
+
     }
 }

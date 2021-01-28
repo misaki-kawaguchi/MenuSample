@@ -26,6 +26,11 @@ class MainActivity : AppCompatActivity() {
         val adapter = SimpleAdapter(applicationContext, _menuList, R.layout.row, FROM, TO)
         lvMenu.adapter = adapter
 
+        lvMenu.onItemClickListener = ListItemClickListener()
+
+        // 長押しを検知する
+        registerForContextMenu(lvMenu)
+
     }
 
     // 定食メニューを生成
@@ -144,4 +149,24 @@ class MainActivity : AppCompatActivity() {
         return super.onContextItemSelected(item)
     }
 
+    // リストビューをクリックする
+    private inner class ListItemClickListener() : AdapterView.OnItemClickListener {
+        override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            val item = parent.getItemAtPosition(position) as MutableMap<String, Any>
+            order(item)
+        }
+    }
+
+    // コンテキストメニューの「ご注文」とリストビューをクリックしたときの処理
+    private fun order(menu: MutableMap<String, Any>) {
+
+        val menuName = menu["name"] as String
+        val menuPrice = menu["price"] as Int
+
+        val intent = Intent(applicationContext, MenuThanksActivity::class.java)
+        intent.putExtra("menuName", menuName)
+        intent.putExtra("menuPrice", "${menuPrice}円")
+
+        startActivity(intent)
+    }
 }
