@@ -2,11 +2,25 @@ package com.misakikawaguchi.menusample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ListView
+import android.widget.SimpleAdapter
 
 class MainActivity : AppCompatActivity() {
+
+    private var _menuList : MutableList<MutableMap<String, Any>>? = null
+
+    private val FROM = arrayOf("name", "price")
+    private val TO = intArrayOf(R.id.tvMenuName, R.id.tvMenuPrice)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        _menuList = createTeishoku()
+
+        val lvMenu = findViewById<ListView>(R.id.lvMenu)
+        val adapter = SimpleAdapter(applicationContext, _menuList, R.layout.row, FROM, TO)
+        lvMenu.adapter = adapter
     }
 
     // 定食メニューを生成
