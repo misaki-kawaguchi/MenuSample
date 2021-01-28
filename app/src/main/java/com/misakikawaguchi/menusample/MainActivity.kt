@@ -7,9 +7,7 @@ import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ListView
-import android.widget.SimpleAdapter
+import android.widget.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -113,6 +111,37 @@ class MainActivity : AppCompatActivity() {
 
         menuInflater.inflate(R.menu.menu_context_menu_list, menu)
         menu.setHeaderTitle(R.string.menu_list_context_header)
+    }
+
+    // コンテキストメニューを選択したときの処理
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+
+        // 長押しされたビューに関する情報が書くのされたオブジェクトを取得
+        val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
+
+        // 長押しされたリストのポジションを取得
+        val listPosition = info.position
+
+        // ポジションから長押しされたメニュー情報Mapオブジェクトを取得
+        val menu = _menuList!![listPosition]
+
+        // 選択されたメニューのIDのR値による処理の分岐
+        when(item.itemId) {
+            // 「説明を表示」メニューが選択されたときの処理
+            R.id.menuListContextDesc -> {
+                // メニューの説明文字列を取得
+                val desc = menu["desc"] as String
+                // トーストを表示
+                Toast.makeText(applicationContext, desc, Toast.LENGTH_LONG).show()
+            }
+
+            // 「ご注文」メニューが選択されたときの処理
+            R.id.menuListContextOrder ->
+                // 注文処理
+            order(menu)
+        }
+
+        return super.onContextItemSelected(item)
     }
 
 }
