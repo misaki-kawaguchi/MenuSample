@@ -38,4 +38,26 @@ class MainActivity : AppCompatActivity() {
 
         return menuList
     }
+
+    // カレーメニューを生成
+    private fun createCurry() : MutableList<MutableMap<String, Any>> {
+        val menuList : MutableList<MutableMap<String, Any>> = mutableListOf()
+
+        var menu = mutableMapOf("name" to "ビーフカレー", "price" to 520, "desc" to "ビーフカレーです")
+        menuList.add(menu)
+        menu = mutableMapOf("name" to "ポークカレー", "price" to 420, "desc" to "ポークカレーです")
+        menuList.add(menu)
+        menu = mutableMapOf("name" to "ハンバーグカレー", "price" to 620, "desc" to "ハンバーグカレーです")
+        menuList.add(menu)
+        menu = mutableMapOf("name" to "チーズカレー", "price" to 560, "desc" to "チーズカレーです")
+        menuList.add(menu)
+        menu = mutableMapOf("name" to "カツカレー", "price" to 750, "desc" to "カツカレーです")
+        menuList.add(menu)
+        menu = mutableMapOf("name" to "ビーフカツカレー", "price" to 890, "desc" to "ビーフカツカレーです")
+        menuList.add(menu)
+        menu = mutableMapOf("name" to "から揚げカレー", "price" to 540, "desc" to "から揚げカレーです")
+        menuList.add(menu)
+
+        return menuList
+    }
 }
