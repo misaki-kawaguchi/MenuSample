@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
@@ -80,10 +81,29 @@ class MainActivity : AppCompatActivity() {
         return menuList
     }
 
-    // メニューを表示する
+    // オプションメニューを表示する
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_options_menu_list, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    // オプションメニューをクリックしたときの処理
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId) {
+            R.id.menuListOptionTeishoku ->
+                _menuList = createTeishoku()
+            R.id.menuListOptionCurry ->
+                _menuList = createCurry()
+        }
+
+        val lvMenu = findViewById<ListView>(R.id.lvMenu)
+
+        val adapter = SimpleAdapter(applicationContext, _menuList, R.layout.row, FROM, TO)
+
+        lvMenu.adapter = adapter
+
+        return super.onOptionsItemSelected(item)
     }
 
 }
